@@ -11,7 +11,15 @@ namespace Ampliacion_FrayGuillermo.Controllers
         // GET: HomeController
         public IActionResult Index()
         {
-            return View(new clsIndexVM());
+            ActionResult actionResult;
+            try
+            {
+                actionResult = View(new clsIndexVM());
+            } catch (Exception)
+            { 
+                actionResult = View("Error");
+            }
+            return actionResult;
         }
         
         [HttpPost]
@@ -24,8 +32,13 @@ namespace Ampliacion_FrayGuillermo.Controllers
             }
             catch
             {
-                return View();
+                return View("Error");
             }
+        }
+
+        public IActionResult Error()
+        {
+            return View();
         }
     }
 }

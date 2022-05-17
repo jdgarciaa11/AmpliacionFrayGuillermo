@@ -27,7 +27,14 @@
             {
                 <tr>
                     <td>@planta.nombre</td>
-                    <td>@planta.idCategoria</td>
+                    @foreach (var categoria in Model.ListadoCategoria)
+                    {
+                        @if (@categoria.id == @planta.idCategoria)
+                        {
+                            <td>@categoria.nombre</td>
+                            break;
+                        }
+                    }
                     <td><input type="checkbox" name="idPlantas" value="@planta.id"></td>
                 </tr>
             }
